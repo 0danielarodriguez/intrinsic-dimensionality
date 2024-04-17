@@ -1,0 +1,32 @@
+Package: SPAC2
+Type: Package
+Title: Statistical and Probabilistic Algorithms for Classification and
+        Clustering
+Version: 0.9.9
+Authors@R: c(
+    person("Wei Q.", "Deng", email = "dengwq@mcmaster.ca", role = c("cre","aut")),
+    person("Radu V.", "Craiu", email = "radu.craiu@utoronto.ca", role = "aut"))
+Description: Implementing a series of statistical procedures for large-scale data, including a penalized profile log-likelihood criterion to estimate the number of effective rank of a data matrix, as well as alternative approaches; a measure of multi-collinearity that can summarize both the overall and individual-level burden of correlation; and an unbiased high-dimensional variance estimator. The package also provides various functions to simulate either the sample eigenvalue or the data matrix under specific covariance structures and possibly with violation to normality or independence assumption.
+License: GPL-2
+Encoding: UTF-8
+Imports: MASS, Matrix, mvtnorm, pracma, psych, car,
+Depends: R (>= 3.1.0)
+Recommends: R (>= 3.4.1)
+Suggests: cluster, mclust
+RoxygenNote: 7.1.1
+RemoteType: github
+RemoteHost: api.github.com
+RemoteRepo: SPAC2
+RemoteUsername: WeiAkaneDeng
+RemoteRef: HEAD
+RemoteSha: 9dd25a397e9a3647205419389db48364909b04d1
+GithubRepo: SPAC2
+GithubUsername: WeiAkaneDeng
+GithubRef: HEAD
+GithubSHA1: 9dd25a397e9a3647205419389db48364909b04d1
+NeedsCompilation: no
+Packaged: 2022-02-18 00:51:22 UTC; admin
+Author: Wei Q. Deng [cre, aut],
+  Radu V. Craiu [aut]
+Maintainer: Wei Q. Deng <dengwq@mcmaster.ca>
+Built: R 4.1.2; ; 2022-02-18 00:51:22 UTC; windows
