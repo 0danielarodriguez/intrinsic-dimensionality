@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Cross-validation for the PPCA model.</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body><div class="container">
+
+<table width="100%" summary="page for ppcaCV {SPAC2}"><tr><td>ppcaCV {SPAC2}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Cross-validation for the PPCA model.</h2>
+
+<h3>Description</h3>
+
+<p>The function returns the profile log-likelihood
+of the PPCA model at respective MLEs for a specific
+choice of $K=k$ evaluated by cross-validation.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+ppcaCV(k = NULL, x = NULL, fold = 5)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>k</code></td>
+<td>
+<p>an integer indicating the tested dimension, should be between 1 and the number of rows of <code>x</code>.</p>
+</td></tr>
+<tr valign="top"><td><code>x</code></td>
+<td>
+<p>a data matrix with the number of rows to be reduced; only complete columns are used.</p>
+</td></tr>
+<tr valign="top"><td><code>fold</code></td>
+<td>
+<p>an integer indicating the number of folds to be used.</p>
+</td></tr>
+</table>
+
+
+<h3>Value</h3>
+
+<p>profile log-likelihood of the remaining fold evaluated at MLEs computed from other folds.
+</p>
+
+
+<h3>References</h3>
+
+<p>Tipping, M. E., and Bishop, C. M. (1999). Probabilistic principal component analysis. **Journal of the Royal Statistical Society: Series B (Statistical Methodology)**, *61*(3), 611-622. &lt;doi:10.1111/1467-9868.00196&gt;
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+## Not run: 
+library(MASS)
+X &lt;- mvrnorm(1000, mu = rep(0,50), Sigma = diag(1,50))
+ppcaCV(k = 5, x = X, fold = 5) # 5-fold cross-validation.
+
+## End(Not run)
+#'
+</pre>
+
+<hr /><div style="text-align: center;">[Package <em>SPAC2</em> version 0.9.9 <a href="00Index.html">Index</a>]</div>
+</div></body></html>

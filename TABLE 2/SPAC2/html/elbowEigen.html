@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Alternative methods based on the detection of elbow in sample...</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body><div class="container">
+
+<table width="100%" summary="page for elbowEigen {SPAC2}"><tr><td>elbowEigen {SPAC2}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Alternative methods based on the detection of elbow in sample eigenvalues.</h2>
+
+<h3>Description</h3>
+
+<p>The function returns the dimension that is selected based on various methods that
+attempt to detect an &ldquo;elbow&rdquo; in sample eigenvalues.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+elbowEigen(lambda, methods = c("adjD", "cumD", "varD", "cumlog", "logsigma2"))
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>lambda</code></td>
+<td>
+<p>a numeric vector of positive sample eigenvalues of length n</p>
+</td></tr>
+<tr valign="top"><td><code>methods</code></td>
+<td>
+<p>a character vector of possible methods to detect an elbow in sample eigenvalues.</p>
+</td></tr>
+</table>
+
+
+<h3>Value</h3>
+
+<p>an integer $K$ between 1 and $n$.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+## Not run: 
+library(MASS)
+X &lt;- mvrnorm(1000, mu = rep(0,10), Sigma = diag(1,10))
+eigen_values &lt;- eigen(as.matrix(Matrix::nearPD(stats::cov(scale(X)))$mat))$val
+elbowEigen(lambda = eigen_values)
+elbowEigen(lambda = eigen_values)
+
+## End(Not run)
+
+
+</pre>
+
+<hr /><div style="text-align: center;">[Package <em>SPAC2</em> version 0.9.9 <a href="00Index.html">Index</a>]</div>
+</div></body></html>

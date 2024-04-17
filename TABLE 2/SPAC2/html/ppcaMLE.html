@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: MLEs for the PPPCA model</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body><div class="container">
+
+<table width="100%" summary="page for ppcaMLE {SPAC2}"><tr><td>ppcaMLE {SPAC2}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>MLEs for the PPPCA model</h2>
+
+<h3>Description</h3>
+
+<p>The function returns the MLEs for the PPCA model at a given choice of dimension.
+This function is adapted from the one made available by Mark Clark on github
+with the link of the original code under &ldquo;See also&rdquo;.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+ppcaMLE(x, nComp = 2, tol = 1e-06, maxits = 100)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>x</code></td>
+<td>
+<p>a data matrix with the number of rows to be reduced; only complete columns are used.</p>
+</td></tr>
+<tr valign="top"><td><code>nComp</code></td>
+<td>
+<p>an integer specifying the number of principal components or effective dimension retained.</p>
+</td></tr>
+<tr valign="top"><td><code>tol</code></td>
+<td>
+<p>a tolerance level for the EM algorithm to terminate computations.</p>
+</td></tr>
+<tr valign="top"><td><code>maxits</code></td>
+<td>
+<p>the maximum number of iterations for EM to converge to the MLEs.</p>
+</td></tr>
+</table>
+
+
+<h3>Value</h3>
+
+<p>a list of MLEs: the first item of the list is the loading matrix <i>W</i>,
+and the second item of the list is the error variance <i>&sigma;^{2}</i> or <code>sigma2</code>.
+</p>
+
+
+<h3>References</h3>
+
+<p>Tipping, M. E., and Bishop, C. M. (1999). Probabilistic principal component analysis. **Journal of the Royal Statistical Society: Series B (Statistical Methodology)**, *61*(3), 611-622. &lt;doi:10.1111/1467-9868.00196&gt;
+</p>
+
+
+<h3>See Also</h3>
+
+<p><a href="https://github.com/m-clark/Miscellaneous-R-Code/blob/master/ModelFitting/EM%20Examples/EM%20algorithm%20for%20ppca.R">https://github.com/m-clark/Miscellaneous-R-Code/blob/master/ModelFitting/EM%20Examples/EM%20algorithm%20for%20ppca.R</a>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+## Not run: 
+library(MASS)
+X &lt;- mvrnorm(1000, mu = rep(0,10), Sigma = diag(1,10))
+ppcaMLE(x = t(X), nComp = 5)
+
+## End(Not run)
+
+</pre>
+
+<hr /><div style="text-align: center;">[Package <em>SPAC2</em> version 0.9.9 <a href="00Index.html">Index</a>]</div>
+</div></body></html>

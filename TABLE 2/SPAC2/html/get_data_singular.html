@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Simulate Data from Eigenvalue Structure</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body><div class="container">
+
+<table width="100%" summary="page for get_data_singular {SPAC2}"><tr><td>get_data_singular {SPAC2}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Simulate Data from Eigenvalue Structure</h2>
+
+<h3>Description</h3>
+
+<p>The function returns either the results of penalized profile
+log-likelihood given a matrix of data or a vector of sample
+eigenvalues. The data matrix has the following decomposition
+<i> X = WL + error</i>, where the rows of <i>X</i> are linear
+projections onto the subspace <i> W </i> by some arbitrary latent
+vector plus error. The solution finds the rank of <i>W</i>, which
+represents the hidden structure in the data, such that <i> X-WL </i>
+have independent and identically distributed components.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+get_data_singular(
+  N,
+  K,
+  M,
+  sq_singular = NULL,
+  sigma2 = NULL,
+  last = NULL,
+  trend = NULL,
+  rho = NULL,
+  df = NULL,
+  dist = "norm",
+  datamat = FALSE
+)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>N</code></td>
+<td>
+<p>the full dimension of the data</p>
+</td></tr>
+<tr valign="top"><td><code>K</code></td>
+<td>
+<p>the true dimension of the</p>
+</td></tr>
+<tr valign="top"><td><code>M</code></td>
+<td>
+<p>the number of features of observations</p>
+</td></tr>
+<tr valign="top"><td><code>sq_singular</code></td>
+<td>
+<p>a vector of numeric values for the squared singular values.
+The other parameters can be skipped if this is supplied along with <i>N, K, M</i>.</p>
+</td></tr>
+<tr valign="top"><td><code>sigma2</code></td>
+<td>
+<p>a positive numeric between 0 and 1 for the error variance.</p>
+</td></tr>
+<tr valign="top"><td><code>last</code></td>
+<td>
+<p>a positive numeric within reasonable range for the difference
+between the Kth eigenvalue and the (<i>K</i>+1)th, a very large difference
+might not be possible if <i>K</i> is large.</p>
+</td></tr>
+<tr valign="top"><td><code>trend</code></td>
+<td>
+<p>a character, one of <code>equal</code>, <code>exponential</code>, <code>linear</code> and <code>quadratic</code>
+for the type of trend in squared singular values</p>
+</td></tr>
+<tr valign="top"><td><code>rho</code></td>
+<td>
+<p>a numeric value between 0 and 1 for the amount of auto-correlation, i.e. correlation
+between sequential observations or features.</p>
+</td></tr>
+<tr valign="top"><td><code>df</code></td>
+<td>
+<p>an integer for the degrees of freedom if <code>dist</code> == <code>t</code></p>
+</td></tr>
+<tr valign="top"><td><code>dist</code></td>
+<td>
+<p>a character specifying the error distribution to be one of <code>norm</code>, <code>t</code>,
+for normal and student's t-distribution, respectively.</p>
+</td></tr>
+<tr valign="top"><td><code>datamat</code></td>
+<td>
+<p>a logical to indicate whether both the data matrix and
+sample eigenvalues or only the sample eigenvalues should be returned</p>
+</td></tr>
+</table>
+
+
+<h3>Value</h3>
+
+<p>a list containing the simulated data matrix and
+sample eigenvalues or a numerical vector of sample eigenvalues.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+## Not run: 
+get_data_singular(N = 200, K = 5, M = 1000, sq_singular = c(5,4,2,1,1))
+get_data_singular(N = 200, K = 5, M = 1000, sigma2 = 0.2, last= 0.1, trend = "exponential")
+get_data_singular(N = 200, K = 5, M = 1000, sigma2 = 0.8, last= 0.1, trend = "exponential",
+   rho = 0.2, df = 5, dist = "t")
+
+## End(Not run)
+
+
+</pre>
+
+<hr /><div style="text-align: center;">[Package <em>SPAC2</em> version 0.9.9 <a href="00Index.html">Index</a>]</div>
+</div></body></html>

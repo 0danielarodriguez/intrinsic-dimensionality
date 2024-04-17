@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Information Criterion for PPCA.</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body><div class="container">
+
+<table width="100%" summary="page for INFO_ppca {SPAC2}"><tr><td>INFO_ppca {SPAC2}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Information Criterion for PPCA.</h2>
+
+<h3>Description</h3>
+
+<p>The function returns the dimension that minimized the AIC or BIC based on the
+profile log-likelihood while considering all possible dimensions.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+INFO_ppca(lambda, M, verbose = FALSE, tau = 0.001, AIC = TRUE)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>lambda</code></td>
+<td>
+<p>a numeric vector of positive sample eigenvalues pf length n</p>
+</td></tr>
+<tr valign="top"><td><code>M</code></td>
+<td>
+<p>a positive integer for the number of observations or features.</p>
+</td></tr>
+<tr valign="top"><td><code>verbose</code></td>
+<td>
+<p>a logical specifying whether the posterior evidence or
+the integer that minimized the evidence should be returned</p>
+</td></tr>
+<tr valign="top"><td><code>tau</code></td>
+<td>
+<p>a tolerance threshold for the smallest eigenvalue, the default value is 0.001.</p>
+</td></tr>
+<tr valign="top"><td><code>AIC</code></td>
+<td>
+<p>a logical indicator to use AIC as the information criterion, if FALSE, then BIC is used; the default option is AIC.</p>
+</td></tr>
+</table>
+
+
+<h3>Value</h3>
+
+<p>an integer K between 1 and n that minimizes the AIC or BIC.
+</p>
+
+
+<h3>References</h3>
+
+<p>Akaike, H. (1974), A new look at the statistical model identification, **IEEE Transactions on Automatic Control**, *19*(6): 716–723, &lt;doi:10.1109/TAC.1974.1100705&gt;
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+## Not run: 
+library(MASS)
+X &lt;- mvrnorm(1000, mu = rep(0,10), Sigma = diag(1,10))
+eigen_values &lt;- eigen(as.matrix(Matrix::nearPD(stats::cov(scale((X))))$mat))$val
+INFO_ppca(lambda = eigen_values, M = 100)
+INFO_ppca(lambda = eigen_values, M = 100, AIC = FALSE)
+INFO_ppca(lambda = eigen_values, M = 5000)
+INFO_ppca(lambda = eigen_values, M = 5000, AIC = FALSE)
+
+## End(Not run)
+
+</pre>
+
+<hr /><div style="text-align: center;">[Package <em>SPAC2</em> version 0.9.9 <a href="00Index.html">Index</a>]</div>
+</div></body></html>

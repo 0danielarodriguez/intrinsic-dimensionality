@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Penalized Probabilistic PCA</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body><div class="container">
+
+<table width="100%" summary="page for pPPCA {SPAC2}"><tr><td>pPPCA {SPAC2}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Penalized Probabilistic PCA</h2>
+
+<h3>Description</h3>
+
+<p>The function returns the results of penalized profile
+log-likelihood given a matrix of data or a vector of sample
+eigenvalues. The data matrix is assumed to follow the decomposition
+<i>X = WL + &epsilon;</i>, where rows of <i>X</i> are decomposed to a linear projection
+in an orthogonal space plus error. The solution finds the
+rank of <i>W</i>, which represents some hidden structure in
+the data, such that <i>X-WL</i> have independent and
+identically distributed components.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+pPPCA(
+  lambda,
+  Tvotes = 1000,
+  verbose = FALSE,
+  penalty = 1,
+  tau = 0.001,
+  beta = NULL
+)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>lambda</code></td>
+<td>
+<p>a numerical vector of sample eigenvalues</p>
+</td></tr>
+<tr valign="top"><td><code>Tvotes</code></td>
+<td>
+<p>the number of possible tuning parameter values to be searched</p>
+</td></tr>
+<tr valign="top"><td><code>verbose</code></td>
+<td>
+<p>a logical to indicate whether the details of the penalized voting results should be shown</p>
+</td></tr>
+<tr valign="top"><td><code>penalty</code></td>
+<td>
+<p>an integer indicating the type of penalty function to use. The default option is 1, which corresponds to the model in Deng and Craiu (2021).</p>
+</td></tr>
+<tr valign="top"><td><code>tau</code></td>
+<td>
+<p>a tolerance threshold for the smallest eigenvalue, the default value is 0.001.</p>
+</td></tr>
+<tr valign="top"><td><code>beta</code></td>
+<td>
+<p>a numeric between 0 and 1 indicating the weight towards penalty function 1 or 2.</p>
+</td></tr>
+</table>
+
+
+<h3>Value</h3>
+
+<p>an integer $K$ between 1 and $n$.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+## Not run: 
+library(MASS)
+normdata &lt;- mvrnorm(1000, mu = rep(0,50), Sigma = diag(1,50))
+eigen_values &lt;- eigen(as.matrix(Matrix::nearPD(stats::cov(scale(normdata)))$mat))$val
+
+pPPCA(lambda = lambda) # supply the sample eigenvalues
+
+## End(Not run)
+
+
+</pre>
+
+<hr /><div style="text-align: center;">[Package <em>SPAC2</em> version 0.9.9 <a href="00Index.html">Index</a>]</div>
+</div></body></html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Automatic Choice of Dimensionality for PCA using Bayesian...</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body><div class="container">
+
+<table width="100%" summary="page for minka2001 {SPAC2}"><tr><td>minka2001 {SPAC2}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Automatic Choice of Dimensionality for PCA using Bayesian Posterior</h2>
+
+<h3>Description</h3>
+
+<p>The function returns the choice dimension for PCA under the PPCA setup using Laplace approximation.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+minka2001(lambda, M, verbose = FALSE, tau = 0.001, BIC = FALSE)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>lambda</code></td>
+<td>
+<p>a numeric vector of sample eigenvalues of the covariance matrix of <code>X</code> of dimension n by M.</p>
+</td></tr>
+<tr valign="top"><td><code>M</code></td>
+<td>
+<p>the number of columns of <code>X</code>.</p>
+</td></tr>
+<tr valign="top"><td><code>verbose</code></td>
+<td>
+<p>a logical specifying whether the posterior evidence or
+the integer that minimized the evidence should be returned</p>
+</td></tr>
+<tr valign="top"><td><code>tau</code></td>
+<td>
+<p>a tolerance threshold for the smallest eigenvalue, the default value is 0.001.</p>
+</td></tr>
+<tr valign="top"><td><code>BIC</code></td>
+<td>
+<p>a logical indicating whether the Laplace's method or the BIC approximation should be used.</p>
+</td></tr>
+</table>
+
+
+<h3>Value</h3>
+
+<p>an integer K between 1 and n that maximizes the posterior evidence  by Laplace's method or BIC approximation.
+</p>
+
+
+<h3>References</h3>
+
+<p>Minka, T. (2000). Automatic choice of dimensionality for PCA. **Advances in neural information processing systems**, *13*, 598-604. [http://dblp.uni-trier.de/db/conf/nips/nips2000.html#Minka00]
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+## Not run: 
+X &lt;- MASS::mvrnorm(1000, mu = rep(0,10), Sigma = diag(1,10))
+eigen_values &lt;- eigen(as.matrix(Matrix::nearPD(stats::cov(scale(X)))$mat))$val
+minka2001(lambda = eigen_values, M = 100, BIC=TRUE)
+minka2001(lambda = eigen_values, M = 100, BIC=FALSE)
+minka2001(lambda = eigen_values, M = 5000)
+
+## End(Not run)
+
+</pre>
+
+<hr /><div style="text-align: center;">[Package <em>SPAC2</em> version 0.9.9 <a href="00Index.html">Index</a>]</div>
+</div></body></html>

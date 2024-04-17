@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Automatic Dimensionality Selection from the Scree Plot via...</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body><div class="container">
+
+<table width="100%" summary="page for ZG {SPAC2}"><tr><td>ZG {SPAC2}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Automatic Dimensionality Selection from the Scree Plot via Profile Likelihood</h2>
+
+<h3>Description</h3>
+
+<p>The function returns the estimated dimension from a scree plot using a profile
+likelihood criterion. The method requires only the sample eigenvalues.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+ZG(lambda, tau = 0.001, verbose = FALSE)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>lambda</code></td>
+<td>
+<p>a numerical vector of sample eigenvalues of length $n$</p>
+</td></tr>
+<tr valign="top"><td><code>tau</code></td>
+<td>
+<p>a tolerance threshold for the smallest eigenvalue, the default value is 0.001.</p>
+</td></tr>
+<tr valign="top"><td><code>verbose</code></td>
+<td>
+<p>a logical to indicate whether the details of the profile log-likelihood evidence should be shown</p>
+</td></tr>
+</table>
+
+
+<h3>Value</h3>
+
+<p>an integer $K$ between 1 and $n$.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Wei Q. Deng, <a href="mailto:dengwq@mcmaster.ca">dengwq@mcmaster.ca</a> and Radu V. Craiu <a href="mailto:craiu@utoronto.ca">craiu@utoronto.ca</a>
+</p>
+
+
+<h3>References</h3>
+
+<p>Zhu, M., &amp; Ghodsi, A. (2006). Automatic dimensionality selection from the scree plot via the use of profile likelihood. **Computational Statistics &amp; Data Analysis**, *51*(2), 918-930. &lt;doi:10.1016/j.csda.2005.09.010&gt;
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+## Not run: 
+library(MASS)
+normdata &lt;- mvrnorm(1000, mu = rep(0,50), Sigma = diag(1,50))
+eigen_values &lt;- eigen(as.matrix(Matrix::nearPD(stats::cov(scale(normdata)))$mat))$val
+
+ZG(lambda = eigen_values) # supply the sample eigenvalues
+
+## End(Not run)
+
+</pre>
+
+<hr /><div style="text-align: center;">[Package <em>SPAC2</em> version 0.9.9 <a href="00Index.html">Index</a>]</div>
+</div></body></html>

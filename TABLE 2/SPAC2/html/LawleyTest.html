@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Likelihood Ratio Tests for equality of last $n-K$...</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body><div class="container">
+
+<table width="100%" summary="page for LawleyTest {SPAC2}"><tr><td>LawleyTest {SPAC2}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Likelihood Ratio Tests for equality of last $n-K$ eigenvalues.</h2>
+
+<h3>Description</h3>
+
+<p>The function returns the dimension that minimizes the $p$-value from the
+likelihood ratio test (LRT) derived by Lawley (1956).
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+LawleyTest(lambda, M)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>lambda</code></td>
+<td>
+<p>a numeric vector of positive sample eigenvalues that sums to $n$</p>
+</td></tr>
+<tr valign="top"><td><code>M</code></td>
+<td>
+<p>a positive integer for the number of observations or features</p>
+</td></tr>
+</table>
+
+
+<h3>Value</h3>
+
+<p>an integer $K$ between 1 and $n$ that minimizes the LRT $p$-value.
+</p>
+
+
+<h3>References</h3>
+
+<p>Lawley, D. N. (1956) Tests of significance for the latent roots of covariance and correlation matrices. **Biometrika** *43*.1/2: 128-136. &lt;doi:10.2307/2333586&gt;
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+## Not run: 
+library(MASS)
+X &lt;- mvrnorm(1000, mu = rep(0,10), Sigma = diag(c(5,4,2,4,1,1,1,1,1,1)))
+eigen_values &lt;- eigen(as.matrix(Matrix::nearPD(stats::cov(scale(t(X))))$mat))$val
+LawleyTest(lambda = eigen_values)
+
+## End(Not run)
+
+
+</pre>
+
+<hr /><div style="text-align: center;">[Package <em>SPAC2</em> version 0.9.9 <a href="00Index.html">Index</a>]</div>
+</div></body></html>

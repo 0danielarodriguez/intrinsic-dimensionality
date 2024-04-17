@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Penalized profile log-likelihood of a PPPCA model</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body><div class="container">
+
+<table width="100%" summary="page for pPPCA_INFO {SPAC2}"><tr><td>pPPCA_INFO {SPAC2}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Penalized profile log-likelihood of a PPPCA model</h2>
+
+<h3>Description</h3>
+
+<p>The function returns either the penalized profile
+log-likelihood or the value that maximizes the penalized
+profile log-likelihood for a given tuning parameter value.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+pPPCA_INFO(lam, Tvotes = 100, M, AIC = TRUE, tau = 0.001, beta = NULL)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>lam</code></td>
+<td>
+<p>a numerical vector of positive sample eigenvalues</p>
+</td></tr>
+<tr valign="top"><td><code>Tvotes</code></td>
+<td>
+<p>the number of possible tuning parameter values to be searched</p>
+</td></tr>
+<tr valign="top"><td><code>M</code></td>
+<td>
+<p>the number of observations used to calculate sample covariance.</p>
+</td></tr>
+<tr valign="top"><td><code>AIC</code></td>
+<td>
+<p>a logical indicator to use AIC as the information criterion, if FALSE, then BIC is used; the default option is AIC.</p>
+</td></tr>
+<tr valign="top"><td><code>tau</code></td>
+<td>
+<p>a tolerance threshold for the smallest eigenvalue, the default value is 0.001.</p>
+</td></tr>
+<tr valign="top"><td><code>beta</code></td>
+<td>
+<p>a numeric between 0 and 1 indicating the weight towards penalty function 1 or 2.</p>
+</td></tr>
+</table>
+
+
+<h3>Value</h3>
+
+<p>an integer K that maximizes the penalized profile log-likelihood for the given <code>delta</code> value.
+</p>
+
+<hr /><div style="text-align: center;">[Package <em>SPAC2</em> version 0.9.9 <a href="00Index.html">Index</a>]</div>
+</div></body></html>

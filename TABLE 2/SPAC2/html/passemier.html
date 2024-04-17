@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: A bias corrected criterion for selecting number of principal...</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body><div class="container">
+
+<table width="100%" summary="page for passemier {SPAC2}"><tr><td>passemier {SPAC2}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>A bias corrected criterion for selecting number of principal components</h2>
+
+<h3>Description</h3>
+
+<p>The function returns the choice for PCA as a by-product of the bias-corrected residual variance estimate.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+passemier(lambda = NULL, M = NULL, tau = 0.001, constant = 0.05)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>lambda</code></td>
+<td>
+<p>a numeric vector of sample eigenvalues of length $n$.</p>
+</td></tr>
+<tr valign="top"><td><code>M</code></td>
+<td>
+<p>the number of observations.</p>
+</td></tr>
+<tr valign="top"><td><code>tau</code></td>
+<td>
+<p>a tolerance threshold for the smallest eigenvalue, the default value is 0.001.</p>
+</td></tr>
+<tr valign="top"><td><code>constant</code></td>
+<td>
+<p>a small prefixed constant and set to the recommended value of 0.05. See Passemier et al., (2017) for details.</p>
+</td></tr>
+</table>
+
+
+<h3>Value</h3>
+
+<p>an integer K
+</p>
+
+
+<h3>References</h3>
+
+<p>Passemier, D., Li, Z., &amp; Yao, J. (2017). On estimation of the noise variance in high dimensional probabilistic principal component analysis. **Journal of the Royal Statistical Society: Series B (Statistical Methodology)**, *79*(1), 51-67. &lt;doi:10.1111/rssb.12153&gt;
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+## Not run: 
+X &lt;- MASS::mvrnorm(1000, mu = rep(0,10), Sigma = diag(1,10))
+eigen_values &lt;- eigen(as.matrix(Matrix::nearPD(stats::cov(scale(X)))$mat))$val
+passemier(lambda = eigen_values, M = 100)
+passemier(lambda = eigen_values, M = 5000)
+
+## End(Not run)
+
+</pre>
+
+<hr /><div style="text-align: center;">[Package <em>SPAC2</em> version 0.9.9 <a href="00Index.html">Index</a>]</div>
+</div></body></html>

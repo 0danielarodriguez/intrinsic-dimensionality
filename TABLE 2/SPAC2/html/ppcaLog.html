@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Profile log-likelihood of the PPCA model.</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body><div class="container">
+
+<table width="100%" summary="page for ppcaLog {SPAC2}"><tr><td>ppcaLog {SPAC2}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Profile log-likelihood of the PPCA model.</h2>
+
+<h3>Description</h3>
+
+<p>The function returns the profile log-likelihood
+of the PPCA model for each possible choice of
+<i>K (1, 2, &hellip;, n-1)</i> at their respective MLEs.
+The maximum choice was set at <i>n-1</i> because when <i>K=n</i>,
+the profile log-likelihood is equal to that at <i>K=n-1</i>.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+ppcaLog(x = NULL, lambda = NULL, M = NULL, param = NULL, EM = FALSE)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>x</code></td>
+<td>
+<p>a data matrix where the number of rows is to be reduced; only complete columns are used</p>
+</td></tr>
+<tr valign="top"><td><code>lambda</code></td>
+<td>
+<p>a numeric vector of sample eigenvalues of the covariance matrix of t(<code>x</code>)</p>
+</td></tr>
+<tr valign="top"><td><code>M</code></td>
+<td>
+<p>if <code>x</code> were not supplied, <code>M</code> should be given as the number of columns of <code>x</code>.</p>
+</td></tr>
+<tr valign="top"><td><code>param</code></td>
+<td>
+<p>a list of MLEs to be supplied if the profile log-likelihood was to
+be evaluate at external MLES; the first list should contain a loading
+matrix <i>W</i> with dimension <i>n</i> by <i>K</i> (<i>&le; n</i>);
+and the second a numeric value between 0 and 1 for the
+residual variance <code>sigma2</code>.</p>
+</td></tr>
+<tr valign="top"><td><code>EM</code></td>
+<td>
+<p>a logic indicator for whether the profile log-likelihood should be computed for
+the MLE estimated using EM algorithms, if FALSE, the profile log-likelihood will be
+evaluated by substitute the analytical formulation of MLEs.
+Note that if <i>n</i> &gt; <i>m</i>, it will not be possible to use this option.</p>
+</td></tr>
+</table>
+
+
+<h3>Value</h3>
+
+<p>profile log-likelihood of length <i>n-1</i>.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Wei Q. Deng, <a href="mailto:dengwq@mcmaster.ca">dengwq@mcmaster.ca</a>
+</p>
+
+
+<h3>References</h3>
+
+<p>Tipping, M. E., and Bishop, C. M. (1999). Probabilistic principal component analysis. **Journal of the Royal Statistical Society: Series B (Statistical Methodology)**, *61*(3), 611-622. &lt;doi:10.1111/1467-9868.00196&gt;
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+## Not run: 
+library(MASS)
+X &lt;- mvrnorm(1000, mu = rep(0,10), Sigma = diag(1,10))
+eigen_values &lt;- eigen(as.matrix(Matrix::nearPD(stats::cov(scale(X)))$mat))$val
+U &lt;- pracma::randortho(10)
+W &lt;- U%*%diag(1, 10)%*%t(U)
+sigma2 &lt;- 0.4
+ppcaLog(x = t(X), EM=TRUE) # supply a data matrix
+ppcaLog(x = t(X), param = list(W, sigma2)) # supply a data matrix and MLEs
+ppcaLog(lambda = eigen_values, M = 1000) # supply the sample eigenvalues
+
+## End(Not run)
+</pre>
+
+<hr /><div style="text-align: center;">[Package <em>SPAC2</em> version 0.9.9 <a href="00Index.html">Index</a>]</div>
+</div></body></html>

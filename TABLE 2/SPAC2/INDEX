@@ -1,0 +1,22 @@
+BaiNg                   Bai and Ng's Criteria for Selecting Number of
+                        Probabilistic Factors
+INFO_ppca               Information Criterion for PPCA.
+LawleyTest              Likelihood Ratio Tests for equality of last
+                        $n-K$ eigenvalues.
+ZG                      Automatic Dimensionality Selection from the
+                        Scree Plot via Profile Likelihood
+elbowEigen              Alternative methods based on the detection of
+                        elbow in sample eigenvalues.
+get_data_singular       Simulate Data from Eigenvalue Structure
+loglk                   Profile log-likelihood of the PPCA model with
+                        sample eigenvalues.
+minka2001               Automatic Choice of Dimensionality for PCA
+                        using Bayesian Posterior
+pPPCA                   Penalized Probabilistic PCA
+pPPCA_INFO              Penalized profile log-likelihood of a PPPCA
+                        model
+passemier               A bias corrected criterion for selecting number
+                        of principal components
+ppcaCV                  Cross-validation for the PPCA model.
+ppcaLog                 Profile log-likelihood of the PPCA model.
+ppcaMLE                 MLEs for the PPPCA model
